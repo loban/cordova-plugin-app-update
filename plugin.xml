@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update-fork" version="1.4.14">
+    id="cordova-plugin-app-update-fork" version="1.5.2">
     <name>AppUpdateFork</name>
     <description>Cordova App Update (Temporary Fork)</description>
     <license>Apache 2.0</license>
@@ -44,7 +44,10 @@
         <source-file src="res/values-pt/appupdate_strings.xml" target-dir="res/values-pt"/>
         <source-file src="res/values-bn/appupdate_strings.xml" target-dir="res/values-bn"/>
         <source-file src="res/values-pl/appupdate_strings.xml" target-dir="res/values-pl"/>
+        <source-file src="res/values-it/appupdate_strings.xml" target-dir="res/values-it"/>
         <source-file src="res/layout/appupdate_progress.xml" target-dir="res/layout"/>
         <source-file src="res/xml/appupdate_paths.xml" target-dir="res/xml" />
+        
+        <framework src="com.android.support:support-v4:24.1.1+" />
     </platform>
 </plugin>

@@ -35,7 +35,10 @@ Just clone and install this demo.
 
 # Install
 
-### Latest published version on npm (with Cordova CLI >= 5.0.0)
+### Latest published version on npm (with Cordova CLI >= 5.0.0) 
+
+> `"cordova-android": "6.3.0"`
+
 `cordova plugin add cordova-plugin-app-update --save`
 
 # Usage
@@ -120,13 +123,14 @@ versionName | versionCode
     int UNKNOWN_ERROR = 901;
 ```
 # Languages
-* zh
-* en
-* de
-* fr
-* pt
-* bn
-* pl
+* 🇨🇳 zh
+* 🇺🇸 en 
+* 🇩🇪 de 
+* 🇫🇷 fr 
+* 🇵🇹 pt 
+* 🇧🇩 bn 
+* 🇵🇱 pl 
+* 🇮🇹 it 
 
 # Platforms
 Android only
