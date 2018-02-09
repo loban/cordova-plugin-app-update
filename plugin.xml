@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-app-update-fork" version="1.5.2">
+    id="cordova-plugin-app-update-fork" version="1.5.3">
     <name>AppUpdateFork</name>
     <description>Cordova App Update (Temporary Fork)</description>
     <license>Apache 2.0</license>
