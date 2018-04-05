@@ -1,7 +1,8 @@
 # cordova-plugin-app-update-fork
-Temporary fork of cordova-plugin-app-update until the following pull-request is integrated.
+Temporary fork of cordova-plugin-app-update until the following pull-requests are integrated.
 
-https://github.com/vaenow/cordova-plugin-app-update/pull/80
+- https://github.com/vaenow/cordova-plugin-app-update/pull/95
+- https://github.com/vaenow/cordova-plugin-app-update/pull/96
 
 Everything below is from the original README.md
 
