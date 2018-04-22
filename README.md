@@ -2,7 +2,6 @@
 Temporary fork of cordova-plugin-app-update until the following pull-requests are integrated.
 
 - https://github.com/vaenow/cordova-plugin-app-update/pull/95
-- https://github.com/vaenow/cordova-plugin-app-update/pull/96
 
 Everything below is from the original README.md
 
@@ -129,6 +128,7 @@ appUpdate.checkAppUpdate(onSuccess, onFail, updateUrl, {
 * 🇮🇹 it 
 * 🇪🇸 es
 * 🇷🇺 ru
+* 🇰🇷 ko
 
 # Platforms
 Android only
