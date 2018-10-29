@@ -25,8 +25,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("checkAppUpdate")) {
             getUpdateManager().options(args, callbackContext);
-            if (verifyInstallPermission() && verifyOtherPermissions())
-                getUpdateManager().checkUpdate();
+            getUpdateManager().checkUpdate();
             return true;
         }
 
@@ -44,7 +43,7 @@ public class CheckAppUpdate extends CordovaPlugin {
     // Generate or retrieve the UpdateManager singleton
     public UpdateManager getUpdateManager() {
         if (updateManager == null)
-            updateManager = new UpdateManager(cordova.getActivity(), cordova);
+            updateManager = new UpdateManager(cordova.getActivity(), cordova, this);
 
         return updateManager;
     }
@@ -63,6 +62,16 @@ public class CheckAppUpdate extends CordovaPlugin {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    private Runnable mVerified;
+
+    public void verifyPermissions(Runnable done) {
+        mVerified = done;
+        if (verifyInstallPermission() && verifyOtherPermissions()) {
+            if (mVerified != null) {
+                mVerified.run();
+            }
+        }
+    }
 
     // Prompt user for install permission if we don't already have it.
     public boolean verifyInstallPermission() {
@@ -116,8 +125,8 @@ public class CheckAppUpdate extends CordovaPlugin {
                 return;
             }
 
-            if (verifyOtherPermissions())
-                getUpdateManager().checkUpdate();
+            if (verifyOtherPermissions() && mVerified != null)
+                mVerified.run();
         }
         else if (requestCode == UNKNOWN_SOURCES_PERMISSION_REQUEST_CODE) {
             try {
@@ -128,8 +137,8 @@ public class CheckAppUpdate extends CordovaPlugin {
             }
             catch (Settings.SettingNotFoundException e) {}
 
-            if (verifyOtherPermissions())
-                getUpdateManager().checkUpdate();
+            if (verifyOtherPermissions() && mVerified != null)
+                mVerified.run();
         }
     }
 
@@ -144,7 +153,9 @@ public class CheckAppUpdate extends CordovaPlugin {
                 }
             }
 
-            getUpdateManager().checkUpdate();
+            if (mVerified != null) {
+                mVerified.run();
+            }
         }
     }
 }

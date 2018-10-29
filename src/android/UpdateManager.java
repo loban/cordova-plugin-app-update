@@ -45,12 +45,15 @@ public class UpdateManager {
     private List<Version> queue = new ArrayList<Version>(1);
     private CheckUpdateThread checkUpdateThread;
     private DownloadApkThread downloadApkThread;
+    // Java's garbage collector is smart enough to clean up the objects if there are circular references
+    private CheckAppUpdate mCheckUpdate;
 
-    public UpdateManager(Context context, CordovaInterface cordova) {
+    public UpdateManager(Context context, CordovaInterface cordova, CheckAppUpdate checkUpdate) {
         this.cordova = cordova;
         this.mContext = context;
         packageName = mContext.getPackageName();
         msgBox = new MsgBox(mContext);
+        mCheckUpdate = checkUpdate;
     }
 
     public UpdateManager(JSONArray args, CallbackContext callbackContext, Context context, JSONObject options) {
@@ -91,7 +94,12 @@ public class UpdateManager {
                     compareVersions();
                     break;
                 case Constants.DOWNLOAD_CLICK_START:
-                    emitNoticeDialogOnClick();
+                    mCheckUpdate.verifyPermissions(new Runnable() {
+                        @Override
+                        public void run() {
+                            UpdateManager.this.emitNoticeDialogOnClick();
+                        }
+                    });
                     break;
                 case Constants.DOWNLOAD_FINISH:
                     isDownloading = false;
